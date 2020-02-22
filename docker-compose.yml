@@ -1,0 +1,40 @@
+version: "3.7"
+
+services:
+  client:
+    container_name: client
+    build:
+      context: ./services/client
+      dockerfile: Dockerfile
+    volumes:
+      - "./services/client:/usr/src/app"
+      - "/usr/src/app/node_modules"
+    ports:
+      - 3001:3000
+    environment:
+      - NODE_ENV=development
+      - REACT_APP_QA_URL=http://localhost:5001
+
+  qa:
+    container_name: qa
+    build:
+      context: ./services/qa
+      dockerfile: Dockerfile
+    ports:
+      - 5001:5000
+    environment:
+      - NODE_ENV=development
+      - PORT=5000
+      - SDC_MONGODB_URI=mongodb+srv://jarrodchung:channel0rangE!@sdc-wwokr.mongodb.net/test?retryWrites=true&w=majority
+
+  nginx:
+    container_name: nginx
+    build:
+      context: ./services/nginx
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 80:80
+    depends_on:
+      - client
+      - qa

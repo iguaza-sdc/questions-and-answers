@@ -1,0 +1,35 @@
+version: "3.7"
+
+services:
+  client:
+    container_name: client
+    build:
+      context: ./services/client
+      dockerfile: Dockerfile-prod
+    args:
+      - NODE_ENV=production
+      - REACT_APP_API_URL=${REACT_APP_API_URL}
+    ports:
+      - 80:3000
+    depends_on:
+      - questions-answers
+
+  questions-answers:
+    container_name: questions-answers
+    build:
+      context: ./services/questions-answers
+      dockerfile: Dockerfile-prod
+    environment:
+      - NODE_ENV=production
+      - MONGODB_
+    ports:
+      - 5001:5000
+    depends_on:
+      - mongodb
+
+  mongodb:
+    container_name: mongodb
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+1g

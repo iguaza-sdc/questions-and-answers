@@ -1,0 +1,9 @@
+notes/*
+node_modules/
+services/client/node_modules
+services/qa/node_modules
+services/etl/.ipynb_checkpoints
+services/etl/json_files
+services/etl/csv_files
+services/etl/questions
+.DS_Store

@@ -4,19 +4,20 @@
 # Adds an answer for the given question
 # POST /qa/:question_id/answers
 
+PORT=5003
 QUESTION_ID=1
-API="http://localhost:5003/qa/1/answers"
-URL="https://m.media-amazon.com/images/I/71L6RjbQi8L._AC_UY436_FMwebp_QL65_.jpg"
-THUMBNAIL_URL="https://images-na.ssl-images-amazon.com/images/I/717ptbh4ptL._SL1500_.jpg"
+API="http://localhost:$PORT/qa/1/answers"
+URL="https://tinyurl.com/ul43dkj"
+THUMBNAIL_URL="https://tinyurl.com/rskjve3"
 
 curl -X POST \
 -H "Content-Type: application/json" \
 $API \
 -d @- << EOF
 {
-  "body": "You can definitely get away with that but I'd be cautious.",
-  "name": "Mr. BigBrain",
-  "email": "bigbrain@harvard.edu",
+  "body": "I think it is definitely worth it.",
+  "name": "Tim Apple",
+  "email": "tim@apple.com",
   "photos": [
     {
       "url": "$URL",

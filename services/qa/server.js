@@ -27,7 +27,7 @@ sequelize
         question_body: "Is this a question?",
         asker_name: "Test Question",
         asker_email: "test@question.com",
-        product_id: "1"
+        product_id: 1
       }),
       Answer.create({
         answer_body: "This is definitely an question.",
@@ -37,10 +37,8 @@ sequelize
         question_id: 1
       }),
       Photo.create({
-        url:
-          "https://cdn-images.threadless.com/threadless-shop/products/9522/1272x920mens-regular-tee_guys_01.jpg?w=1272&h=920",
-        thumbnail_url:
-          "https://cdn-images.threadless.com/threadless-shop/products/9522/1272x920mens-regular-tee_guys_01.jpg?w=350&h=420",
+        url: "https://tinyurl.com/svxkah4",
+        thumbnail_url: "https://tinyurl.com/r3tggf4",
         answer_id: 1
       })
     ]);

@@ -13,7 +13,8 @@ export const getAnswers = (req, res) => {
 
   Answer.findAll({
     where: {
-      question_id: req.params.question_id
+      question_id: req.params.question_id,
+      reported: 0
     }
   })
     .then((answers) => {

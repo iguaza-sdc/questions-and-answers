@@ -8,6 +8,6 @@
 PORT=5003
 PRODUCT_ID=1
 QUERY="?page=2&count=12"
-API="http://localhost:5003/qa/$PRODUCT_ID"
+API="http://localhost:$PORT/qa/$PRODUCT_ID"
 
 curl -X GET $API

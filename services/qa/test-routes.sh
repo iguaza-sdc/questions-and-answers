@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Questions and Answers API
-API=http://localhost:5000
+API=http://localhost:5003
 
 request=$1
 
@@ -15,12 +15,12 @@ answers-list() {
 
 add-question() {
   curl -X POST -H "Content-Type: application/json" \
-  "$API/qa/1/answers" \
+  "$API/qa/2" \
   -d '
   {
-    "body": "Text of question being asked",
-    "name": "Username for questiona asker",
-    "email": "Email address for question asker"
+    "body": "Is this a real product?",
+    "name": "Test Test",
+    "email": "test@test.com"
   }
   '
 }
@@ -64,6 +64,8 @@ elif [[ "${request}" == "answers-list" ]]; then
   answers-list
 elif [[ "${request}" == "add-question" ]]; then 
   add-question
+elif [[ "${request}" == "add-answer" ]]; then 
+  add-answer
 elif [[ "${request}" == "helpful-question" ]]; then
   helpful-question
 elif [[ "${request}" == "report-question" ]]; then

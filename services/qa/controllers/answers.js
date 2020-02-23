@@ -36,6 +36,7 @@ export const getAnswers = (req, res) => {
  * photos: An array of urls corresponding to images to display
  */
 export const addAnswer = (req, res) => {
+  let photos = req.body.photos;
   Answer.findOrCreate({
     where: {
       question_id: req.params.question_id,

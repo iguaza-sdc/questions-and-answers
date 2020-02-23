@@ -1,4 +1,8 @@
 import { Question, Answer, Photo } from "../sql";
+import sequelize from "sequelize";
+import db from "../sql";
+
+const Op = sequelize.Op;
 
 /**
  * [Questions List]
@@ -11,9 +15,25 @@ export const getQuestions = (req, res) => {
   let page = req.query.page || 1;
   let count = req.query.count || 5;
 
+  // db.query(
+  //   `
+  //   select * from questions
+  //   where product_id = ${req.params.product_id}
+  //   and reported < 1;
+  // `
+  // )
+  //   .then((questions) => {
+  //     console.log(questions);
+  //     res.status(200).send(questions);
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
+
   Question.findAll({
     where: {
-      product_id: req.params.product_id
+      product_id: req.params.product_id,
+      reported: 0
     }
   })
     .then((questions) => {

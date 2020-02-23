@@ -1,12 +1,13 @@
 #!/bin/bash
 
-# Answers List
-# Returns answers for a given question. This list does not include any reported answers.
-# GET /qa/:question_id/answers
+# List Questions
+# GET /qa/:product_id 
+# Retrieves a list of questions for a particular product. 
+# This list does not include any reported questions.
 
 PORT=5003
-QUESTION_ID=1
+PRODUCT_ID=1
 QUERY="?page=2&count=12"
-API="http://localhost:$PORT/qa/$QUESTION_ID/answers$QUERY"
+API="http://localhost:5003/qa/$PRODUCT_ID"
 
 curl -X GET $API

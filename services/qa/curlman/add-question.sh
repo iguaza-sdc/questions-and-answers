@@ -1,20 +1,19 @@
 #!/bin/bash
 
-API="http://localhost:5003/qa"
-QUESTION_ID="999"
-BODY="This is a test question?"
-NAME="Test User"
-EMAIL="test_user@test.com"
+# Add a Question
+# Adds a question for the given product
+# POST /qa/:product_id
 
-# Add a Question - /qa/:product_id
+PRODUCT_ID=1
+API="http://localhost:5003/qa/$PRODUCT_ID"
 
 curl -X POST \
 -H "Content-Type: application/json" \
-"$API/$QUESTION_ID" \
+$API \
 -d @- << EOF
 {
-  "body": "$BODY",
-  "name": "$NAME",
-  "email": "$EMAIL"
+  "body": "Is this durable enough to use outside?",
+  "name": "Curious Adventurer",
+  "email": "curious_adventurer@test.com"
 }
 EOF

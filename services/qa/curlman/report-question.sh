@@ -1,6 +1,10 @@
 #!bin/bash
 
 # Report Question
-API="http://localhost:5003/qa/question/1/report"
+# Updates a question to show it was reported. Note, this action does not delete the question, but the question will not be returned in the above GET request.
+# PUT /qa/question/:question_id/report
 
-curl -X PATCH $API 
+QUESTION_ID=1
+API="http://localhost:5003/qa/question/$QUESTION_ID/report"
+
+curl -X PUT $API

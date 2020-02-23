@@ -8,6 +8,10 @@ const sequelize = new Sequelize("postgres://localhost:5432/qa", {
   }
 });
 
+export const Question = sequelize.import("./question.js");
+export const Answer = sequelize.import("./answer.js");
+export const Photo = sequelize.import("./photo.js");
+
 sequelize
   .authenticate()
   .then(() => {

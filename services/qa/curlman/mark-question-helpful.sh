@@ -1,13 +1,6 @@
 #!/bin/bash
 
-API="http://localhost:5003/qa"
-QUESTION_ID="5"
-BODY="This is a test question?"
-NAME="Test User"
-EMAIL="test_user@test.com"
+QUESTION_ID=1
+API="http://localhost:5003/qa/question/$QUESTION_ID/helpful"
 
-# Add a Question - /qa/:product_id
-
-curl -X PUT -H "Content-Type: application/json" "$API/question/$QUESTION_ID/helpful"
-
-
+curl -X PUT $API

@@ -3,9 +3,8 @@ import express from "express";
 import cors from "cors";
 import logger from "morgan";
 import router from "./routes";
-import mongoose from "mongoose";
-import { Question, Answer, Photo } from "./mongo";
-import sql from "./sql";
+import sequelize from "./sql";
+import { Question, Answer, Photo } from "./sql";
 
 dotenv.config();
 
@@ -19,6 +18,56 @@ app.use(logger("dev"));
 app.use(cors());
 
 app.use("/", router);
+
+sequelize
+  .sync({ force: true })
+  .then(() => {
+    Question.create({
+      question_body: "Is this a question?",
+      asker_name: "Test Question",
+      asker_email: "test@question.com",
+      product_id: "1"
+    })
+      .then((question) => {
+        console.log(question.dataValues);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+  .then(() => {
+    Answer.create({
+      answer_body: "This is definitely an question.",
+      answerer_name: "Test Answer",
+      answerer_email: "test@answer.com",
+      photos: [],
+      question_id: 1
+    })
+      .then((answer) => {
+        console.log(answer.dataValues);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+  .then(() => {
+    Photo.create({
+      url:
+        "https://cdn-images.threadless.com/threadless-shop/products/9522/1272x920mens-regular-tee_guys_01.jpg?w=1272&h=920",
+      thumbnail_url:
+        "https://cdn-images.threadless.com/threadless-shop/products/9522/1272x920mens-regular-tee_guys_01.jpg?w=350&h=420",
+      answer_id: 1
+    })
+      .then((photo) => {
+        console.log(photo.dataValues);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}!`);

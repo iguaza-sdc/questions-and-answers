@@ -4,7 +4,7 @@
 # Adds a question for the given product
 # POST /qa/:product_id
 
-PORT=5003
+PORT=5001
 PRODUCT_ID=1
 API="http://localhost:$PORT/qa/$PRODUCT_ID"
 

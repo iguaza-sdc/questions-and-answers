@@ -1,4 +1,8 @@
 import { Question, Answer, Photo } from "../sql";
+import sequelize from "sequelize";
+import db from "../sql";
+
+const Op = sequelize.Op;
 
 /**
  * [Questions List]
@@ -13,7 +17,8 @@ export const getQuestions = (req, res) => {
 
   Question.findAll({
     where: {
-      product_id: req.params.product_id
+      product_id: req.params.product_id,
+      reported: 0
     }
   })
     .then((questions) => {

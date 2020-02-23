@@ -13,7 +13,8 @@ export const getAnswers = (req, res) => {
 
   Answer.findAll({
     where: {
-      question_id: req.params.question_id
+      question_id: req.params.question_id,
+      reported: 0
     }
   })
     .then((answers) => {
@@ -36,6 +37,7 @@ export const getAnswers = (req, res) => {
  * photos: An array of urls corresponding to images to display
  */
 export const addAnswer = (req, res) => {
+  let photos = req.body.photos;
   Answer.findOrCreate({
     where: {
       question_id: req.params.question_id,

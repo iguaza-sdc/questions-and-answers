@@ -13,14 +13,13 @@ services:
       - 3001:3000
     environment:
       - NODE_ENV=development
-      - REACT_APP_QA_URL=http://localhost:5001
+      - REACT_APP_QA_API_URL=http://localhost:5001
 
   qa:
     container_name: qa
     build:
       context: ./services/qa
       dockerfile: Dockerfile
-
     volumes:
       - "./services/qa:/usr/src/app"
       - "/usr/src/app/node_modules"
@@ -29,7 +28,7 @@ services:
     environment:
       - NODE_ENV=development
       - PORT=5000
-      - DATABASE_DEV_URL=postgres://sdcpostgres:sdcpostgres@qa-db:5432/qa_dev
+      - DATABASE_URL=postgres://sdcpostgres:sdcpostgres@qa-db:5432/qa_dev
       - DATABASE_TEST_URL=postgres://sdcpostgres:sdcpostgres@qa-db/qa_test
     depends_on:
       - qa-db

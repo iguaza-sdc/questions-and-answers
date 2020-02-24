@@ -6,4 +6,5 @@ services/etl/.ipynb_checkpoints
 services/etl/json_files
 services/etl/csv_files
 services/etl/questions
+services/qa/.env
 .DS_Store

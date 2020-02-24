@@ -12,7 +12,8 @@ RUN npm install --save @babel/core
 RUN npm install --save @babel/preset-env
 RUN npm install --save @babel/register
 RUN npm install --save express
+RUN npm install --global nodemon
 
 COPY . /usr/src/app
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]

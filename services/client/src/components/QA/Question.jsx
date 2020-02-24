@@ -10,7 +10,11 @@ const Question = ({ productName, q, searchTerm }) => {
 
   const getAnswers = () => {
     axios
-      .get(`http://3.134.102.30/qa/${q.question_id}/answers?page=${1}&count=${100}`)
+      .get(
+        `${process.env.REACT_APP_QA_API_URL}/${
+          q.question_id
+        }/answers?page=${1}&count=${100}`
+      )
       .then((res) => {
         return sorter(res.data.results);
       })

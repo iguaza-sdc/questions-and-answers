@@ -20,7 +20,7 @@ const QuestionsAnswers = () => {
 
   const getQList = () => {
     axios
-      .get(`http://3.134.102.30/qa/${id}?page=${1}&count=${100}`)
+      .get(`${process.env.REACT_APP_QA_API_URLs}/${id}?page=${1}&count=${100}`)
       .then((res) => {
         setQuestionList(res.data.results);
       })

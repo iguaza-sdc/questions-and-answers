@@ -5,7 +5,7 @@
 # Retrieves a list of questions for a particular product. 
 # This list does not include any reported questions.
 
-PORT=5003
+PORT=5001
 PRODUCT_ID=1
 QUERY="?page=2&count=12"
 API="http://localhost:$PORT/qa/$PRODUCT_ID"

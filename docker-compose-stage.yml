@@ -5,31 +5,47 @@ services:
     container_name: client
     build:
       context: ./services/client
-      dockerfile: Dockerfile-prod
+      dockerfile: Dockerfile-stage
     args:
       - NODE_ENV=production
-      - REACT_APP_API_URL=${REACT_APP_API_URL}
-    ports:
-      - 80:3000
+      - REACT_APP_QA_API_URL=${REACT_APP_QA_API_URL}
+    expose:
+      - 80
     depends_on:
-      - questions-answers
+      - qa
 
-  questions-answers:
-    container_name: questions-answers
+  qa:
+    container_name: qa
     build:
-      context: ./services/questions-answers
-      dockerfile: Dockerfile-prod
+      context: ./services/qa
+      dockerfile: Dockerfile-stage
     environment:
       - NODE_ENV=production
-      - MONGODB_
-    ports:
-      - 5001:5000
+      - DATABASE_URL=postgres://sdcposrgres:sdcpostgres@qa-db:5432/qa_stage
+      - DATABASE_TEST_URL=postgres://sdcpostgres:sdcpostgres@qa-db:5432/qa_test
+    expose:
+      - 5000
     depends_on:
-      - mongodb
+      - qa-db
 
-  mongodb:
-    container_name: mongodb
-    image: mongo:latest
+  qa-db:
+    container_name: qa-db
+    build:
+      context: ./services/qa/db
+      dockerfile: Dockerfile-stage
+    expose:
+      - 5432
+    environment:
+      - POSTGRES_USER=sdcpostgres
+      - POSTGRES_PASSWORD=sdcpostgres
+
+  nginx:
+    build:
+      context: ./services/nginx
+      dockerfile: Dockerfile-stage
+    restart: always
     ports:
-      - "27017:27017"
-1g
+      - 80:80
+    depends_on:
+      - qa
+      - client

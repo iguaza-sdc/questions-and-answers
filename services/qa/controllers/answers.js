@@ -70,6 +70,9 @@ export const markAnswerAsHelpful = (req, res) => {
     .then((answer) => {
       console.log(answer.dataValues);
       res.status(204).send("NO CONTENT");
+    })
+    .catch((err) => {
+      res.status(404).send("Error:", err);
     });
 };
 

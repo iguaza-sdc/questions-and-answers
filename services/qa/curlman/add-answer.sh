@@ -4,9 +4,9 @@
 # Adds an answer for the given question
 # POST /qa/:question_id/answers
 
-PORT=5003
+PORT=5001
 QUESTION_ID=1
-API="http://localhost:$PORT/qa/1/answers"
+API="http://localhost:$PORT/qa/$QUESTION_ID/answers"
 URL="https://tinyurl.com/ul43dkj"
 THUMBNAIL_URL="https://tinyurl.com/rskjve3"
 
@@ -22,7 +22,7 @@ $API \
     {
       "url": "$URL",
       "thumbnail_url": "$THUMBNAIL_URL",
-      "answer_id": 1
+      "answer_id": 2
     }
   ]
 }

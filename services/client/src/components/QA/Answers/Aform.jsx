@@ -27,7 +27,7 @@ const Aform = ({ productName, questionId, questionBody, refreshList }) => {
 
   const postAnswer = () => {
     axios
-      .post(`http://3.134.102.30/qa/${questionId}/answers`, {
+      .post(`${process.env.REACT_APP_QA_API_URL}/${questionId}/answers`, {
         body: answerInput,
         name: nicknameInput,
         email: emailInput,

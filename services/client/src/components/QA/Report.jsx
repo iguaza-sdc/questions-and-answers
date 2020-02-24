@@ -6,7 +6,7 @@ const Report = ({ answer_id }) => {
 
   const handleReportClick = () => {
     axios
-      .put(`http://3.134.102.30/qa/answer/${answer_id}/report`)
+      .put(`${process.env.REACT_APP_QA_API_URL}/answer/${answer_id}/report`)
       .then((res) => {
         return setReportButtonOn(false);
       })

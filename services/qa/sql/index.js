@@ -1,6 +1,8 @@
 import Sequelize from "sequelize";
 
-const sequelize = new Sequelize("postgres://localhost:5432/qa", {
+const DATABASE_URL = process.env.DATABASE_URL;
+
+const sequelize = new Sequelize("postgres://jarrodchung@localhost:5432/qa", {
   dialect: "postgres",
   logging: console.log,
   define: {

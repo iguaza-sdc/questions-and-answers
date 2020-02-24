@@ -31,9 +31,6 @@ const AnswerModel = (sequelize, Sequelize) => {
         type: Sequelize.INTEGER,
         defaultValue: 0
       },
-      photos: {
-        type: Sequelize.ARRAY(Sequelize.JSON)
-      },
       question_id: {
         type: Sequelize.INTEGER,
         references: {

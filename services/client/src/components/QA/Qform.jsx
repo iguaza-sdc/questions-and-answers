@@ -26,7 +26,7 @@ const Qform = ({ productName, id, refreshList }) => {
 
   const postQuestion = () => {
     axios
-      .post(`http://3.134.102.30/qa/${id}`, {
+      .post(`${process.env.REACT_APP_QA_API_URL}/qa/${id}`, {
         body: questionInput,
         name: nicknameInput,
         email: emailInput

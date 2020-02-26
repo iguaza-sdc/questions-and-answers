@@ -1,8 +1,5 @@
 import { Question, Answer, Photo } from "../sql";
-import sequelize from "sequelize";
-import db from "../sql";
-
-const Op = sequelize.Op;
+import sql from "sequelize";
 
 /**
  * [Questions List]
@@ -19,14 +16,33 @@ export const getQuestions = (req, res) => {
     where: {
       product_id: req.params.product_id,
       reported: 0
-    }
+    },
+    include: [
+      {
+        model: Answer,
+        attributes: [
+          "answer_id",
+          "answer_body",
+          "answer_date",
+          "answerer_name",
+          "helpfulness"
+        ],
+        include: [
+          {
+            model: Photo,
+            attributes: ["url", "thumbnail_url"]
+          }
+        ]
+      }
+    ],
+    limit: req.query.count || 5
   })
     .then((questions) => {
       res.status(200).send(questions);
     })
     .catch((err) => {
       console.log(err);
-      res.sendStatus(500);
+      res.sendStatus(400);
     });
 };
 
@@ -53,7 +69,7 @@ export const addQuestion = (req, res) => {
     })
     .catch((err) => {
       console.log(err);
-      res.sendStatus(401);
+      res.sendStatus(400);
     });
 };
 
@@ -95,6 +111,6 @@ export const reportQuestion = (req, res) => {
     })
     .catch((err) => {
       console.log(err);
-      res.status(400).send("Error: Couldn't report this question.");
+      res.sendStatus(400);
     });
 };

@@ -1,4 +1,4 @@
-import { Question, Answer, Photo } from "../sql";
+import sql, { Question, Answer, Photo } from "../sql";
 
 /**
  * [Answers List]
@@ -15,14 +15,15 @@ export const getAnswers = (req, res) => {
     where: {
       question_id: req.params.question_id,
       reported: 0
-    }
+    },
+    limit: req.query.count || 5
   })
     .then((answers) => {
       res.status(200).send(answers);
     })
     .catch((err) => {
       console.log(err);
-      res.sendStatus(500);
+      res.sendStatus(400);
     });
 };
 
@@ -37,22 +38,20 @@ export const getAnswers = (req, res) => {
  * photos: An array of urls corresponding to images to display
  */
 export const addAnswer = (req, res) => {
-  let photos = req.body.photos;
   Answer.findOrCreate({
     where: {
       question_id: req.params.question_id,
       answer_body: req.body.body,
       answerer_name: req.body.name,
-      answerer_email: req.body.email,
-      photos: req.body.photos
+      answerer_email: req.body.email
     }
   })
     .then((answer) => {
       res.status(201).send(answer);
     })
     .catch((err) => {
-      console.log(err);
-      res.sendStatus(401);
+      console.log("This is the error returned to the client", err);
+      res.sendStatus(404);
     });
 };
 
@@ -90,5 +89,9 @@ export const reportAnswer = (req, res) => {
     .then((answer) => {
       console.log(answer.dataValues);
       res.status(204).send("NO CONTENT");
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(400);
     });
 };

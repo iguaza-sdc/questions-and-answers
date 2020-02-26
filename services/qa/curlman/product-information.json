@@ -1,0 +1,38 @@
+[
+  {
+    "product_id": 1,
+    "name": "Macbook Pro",
+    "slogan": "The best for the brightest.",
+    "description": "Designed for those who defy limits and change the world, the new MacBook Pro is by far the most powerful notebook we’ve ever made. With an immersive 16-inch Retina display, superfast processors, next-generation graphics, the largest battery capacity ever in a MacBook Pro, a new Magic Keyboard, and massive storage, it’s the ultimate pro notebook for the ultimate user.",
+    "category": "Computers/Laptops",
+    "default_price": 2799,
+    "id": 1,
+    "sale_price": 2299,
+    "original_price": 2699,
+    "default_style": true
+  },
+  {
+    "product_id": 1,
+    "name": "Macbook Pro",
+    "slogan": "The best for the brightest.",
+    "description": "Designed for those who defy limits and change the world, the new MacBook Pro is by far the most powerful notebook we’ve ever made. With an immersive 16-inch Retina display, superfast processors, next-generation graphics, the largest battery capacity ever in a MacBook Pro, a new Magic Keyboard, and massive storage, it’s the ultimate pro notebook for the ultimate user.",
+    "category": "Computers/Laptops",
+    "default_price": 2799,
+    "id": 2,
+    "sale_price": 2299,
+    "original_price": 2699,
+    "default_style": true
+  },
+  {
+    "product_id": 1,
+    "name": "Macbook Pro",
+    "slogan": "The best for the brightest.",
+    "description": "Designed for those who defy limits and change the world, the new MacBook Pro is by far the most powerful notebook we’ve ever made. With an immersive 16-inch Retina display, superfast processors, next-generation graphics, the largest battery capacity ever in a MacBook Pro, a new Magic Keyboard, and massive storage, it’s the ultimate pro notebook for the ultimate user.",
+    "category": "Computers/Laptops",
+    "default_price": 2799,
+    "id": 3,
+    "sale_price": 2199,
+    "original_price": 2799,
+    "default_style": true
+  }
+]

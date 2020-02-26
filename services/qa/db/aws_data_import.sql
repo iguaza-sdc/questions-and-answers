@@ -8,3 +8,7 @@ create table questions (
     reported int default 0,
     product_id int not null
 );
+
+create table answers (
+        
+)

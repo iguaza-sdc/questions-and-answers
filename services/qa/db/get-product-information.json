@@ -1,0 +1,19 @@
+[
+  {
+    "product_id": 1,
+    "name": "Macbook Pro",
+    "slogan": "The best for the brightest.",
+    "description": "Designed for those who defy limits and change the world, the new MacBook Pro is by far the most powerful notebook we’ve ever made. With an immersive 16-inch Retina display, superfast processors, next-generation graphics, the largest battery capacity ever in a MacBook Pro, a new Magic Keyboard, and massive storage, it’s the ultimate pro notebook for the ultimate user.",
+    "category": "Computers/Laptops",
+    "default_price": 2799,
+    "features": [
+      {
+        "id": 1,
+        "product_id": 1,
+        "feature": "CPU",
+        "value": "2.4 GHz Intel Core i9 8-Core"
+      },
+      { "id": 2, "product_id": 1, "feature": "RAM", "value": "64GB" }
+    ]
+  }
+]

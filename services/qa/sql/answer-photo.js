@@ -1,17 +1,13 @@
-const PhotoModel = (sequelize, Sequelize) => {
-  const Photo = sequelize.define(
-    "photos",
+const AnswerPhotoModel = (sequelize, Sequelize) => {
+  const AnswerPhoto = sequelize.define(
+    "answer_photos",
     {
-      id: {
+      photo_id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
       },
       url: {
-        type: Sequelize.STRING(255),
-        allowNull: false
-      },
-      thumbnail_url: {
         type: Sequelize.STRING(255),
         allowNull: false
       },
@@ -25,7 +21,7 @@ const PhotoModel = (sequelize, Sequelize) => {
     },
     {}
   );
-  return Photo;
+  return AnswerPhoto;
 };
 
-export default PhotoModel;
+export default AnswerPhotoModel;

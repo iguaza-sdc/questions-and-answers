@@ -112,3 +112,10 @@ value       | 64GB
     + answerer_name
     + helpfulness
     + photos => `[{photos}]`
+
+
+# Workflow
+1. Use commited GitHub changes as reference for what models should look like AFTER cleaning the data
+2. `{force: true}` to clear tables and remove schema constraints, remake them THEN immediately remove `{force: true}`
+3. Use `SQL Postico`'s Query Editor to resolve any conflicts that would that would occur if you were to hypothetically put constraints back on to the Sequelize models.
+4. When confident that they are compliant, add constraints back in.

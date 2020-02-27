@@ -7,14 +7,6 @@ const ReviewModel = (sequelize, Sequelize) => {
         primaryKey: true,
         autoIncrement: true
       },
-      product_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: "products",
-          key: "product_id"
-        }
-      },
       rating: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -25,12 +17,18 @@ const ReviewModel = (sequelize, Sequelize) => {
         default: Date.now
       },
       summary: {
-        type: Sequelize.STRING(128),
-        allowNull: false
+        type: Sequelize.STRING(64),
+        allowNull: false,
+        validate: {
+          maxlength: 60
+        }
       },
       body: {
-        type: Sequelize.TEXT,
-        allowNull: false
+        type: Sequelize.TEXT(1000),
+        allowNull: false,
+        validate: {
+          minlength: 50
+        }
       },
       recommend: {
         type: Sequelize.BOOLEAN,
@@ -55,6 +53,14 @@ const ReviewModel = (sequelize, Sequelize) => {
       helpfulness: {
         type: Sequelize.INTEGER,
         defaultValue: 0
+      },
+      product_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "products",
+          key: "product_id"
+        }
       }
     },
     {}

@@ -1,5 +1,7 @@
 FROM node:13.8.0-alpine
 
+RUN apk update && apk add postgresql-dev
+
 WORKDIR /usr/src/app
 
 ENV PATH /usr/src/app/node_modules/.bin:$PATH

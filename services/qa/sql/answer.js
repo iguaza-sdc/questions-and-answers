@@ -45,35 +45,3 @@ const AnswerModel = (sequelize, Sequelize) => {
 };
 
 export default AnswerModel;
-
-/*
-"SELECT 
-  reviews.id AS review_id, 
-  rating, 
-  summary, 
-  recommend, 
-  response, 
-  body, 
-  date, 
-  reviewer_name, 
-  helpfulness, 
-  (
-    SELECT COALESCE(json_agg(photos),
-  '[]'
-  ) FROM (
-    SELECT 
-      id, 
-      url 
-    FROM photos 
-    WHERE review_id = reviews.id 
-    ORDER BY id ASC
-    ) photos
-  ) AS photos 
-  FROM reviews 
-  WHERE id IN (
-    SELECT id 
-    FROM reviews 
-    WHERE product_id = $1 
-    AND reported = 0
-  ) LIMIT $4";
-*/

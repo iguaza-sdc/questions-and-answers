@@ -5,11 +5,6 @@ export const getReviews = (req, res) => {
   let page = req.query.page || 1;
   let count = req.query.count || 5;
   let sort = req.query.sort;
-  console.log(`
-    page: ${page}
-    count: ${count}
-    sort: ${sort}
-  `);
   Review.findAll({ where: { product_id } }).then((review) => {
     res.status(200).send(review);
   });
@@ -57,7 +52,13 @@ export const addReview = (req, res) => {
     reviewer_email: req.body.email
   })
     .then((review) => {
-      res.status(201).send(review);
+      const photos = [];
+      let photo = {
+        url: req.body.url,
+        thumbnail_url: req.body.thumbnail_url,
+        review_id: review.review_id
+      };
+      photos.push(photo);
     })
     .catch((err) => {
       console.log(err);

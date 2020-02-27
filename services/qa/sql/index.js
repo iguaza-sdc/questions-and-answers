@@ -3,7 +3,7 @@ import Sequelize from "sequelize";
 const DATABASE_URL = process.env.DATABASE_URL;
 const DATABASE_DEV_URL = process.env.DATABASE_DEV_URL;
 
-const sequelize = new Sequelize("postgres://jarrodchung@localhost:5432/qa", {
+const sequelize = new Sequelize(DATABASE_URL, {
   dialect: "postgres",
   logging: console.log,
   define: {
@@ -24,7 +24,7 @@ sequelize
   .authenticate()
   .then(() => {
     sequelize
-      .sync({ force: true })
+      .sync()
       .then(() => {
         Product.hasMany(Feature, { foreignKey: "product_id" });
         Feature.belongsTo(Product, { foreignKey: "product_id" });

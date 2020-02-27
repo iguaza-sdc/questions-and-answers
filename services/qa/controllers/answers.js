@@ -46,6 +46,7 @@ export const addAnswer = (req, res) => {
       answerer_email: req.body.email
     }
   })
+    .then((answer) => {})
     .then((answer) => {
       res.status(201).send(answer);
     })

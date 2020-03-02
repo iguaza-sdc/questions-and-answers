@@ -1,46 +1,37 @@
 {
-  "name": "questions-and-answers",
+  "name": "questions-answers",
   "version": "1.0.0",
-  "description": "Questions & Answers API Server",
-  "main": "server.js",
+  "description": "Questions & Answers API",
+  "main": "start.js",
   "scripts": {
-    "start": "node start.js",
-    "dev": "node start.js",
-    "test": "jest"
+    "test": "test",
+    "start": "nodemon start.js",
+    "dev": "nodemon start.js",
+    "prod": "node start.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/iguaza-sdc/questions-and-answers.git"
   },
-  "author": "Jarrod Chung",
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/iguaza-sdc/questions-and-answers/issues"
   },
   "homepage": "https://github.com/iguaza-sdc/questions-and-answers#readme",
-  "jest": {
-    "testEnvironment": "node",
-    "coveragePathIgnorePatterns": [
-      "/node_modules/"
-    ]
-  },
-  "devDependencies": {
-    "@babel/core": "^7.8.4",
-    "@babel/preset-env": "^7.8.4",
-    "@babel/register": "^7.8.3",
-    "jest": "^25.1.0",
-    "supertest": "^4.0.2"
-  },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mongoose": "^5.9.2",
-    "mongoose-auto-increment": "^5.0.1",
-    "mongoose-sequence": "^5.2.2",
     "morgan": "^1.9.1",
     "pg": "^7.18.2",
-    "pg-hstore": "^2.3.3",
     "sequelize": "^5.21.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.6",
+    "@babel/preset-env": "^7.8.6",
+    "@babel/register": "^7.8.6",
+    "jest": "^25.1.0",
+    "supertest": "^4.0.2"
   }
 }

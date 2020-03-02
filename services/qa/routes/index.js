@@ -1,12 +1,22 @@
 import express from "express";
-
-import answersRoutes from "./answers";
-import questionsRoutes from "./questions";
-
 const router = express.Router();
 
-router.use(questionsRoutes);
+/**
+ * Product Routes
+ */
+import productRoutes from "./products";
+router.use(productRoutes);
 
-router.use(answersRoutes);
+/**
+ * Question Routes
+ */
+import questionRoutes from "./questions";
+router.use(questionRoutes);
+
+/**
+ * Answer Routes
+ */
+import answerRoutes from "./answers";
+router.use(answerRoutes);
 
 export default router;

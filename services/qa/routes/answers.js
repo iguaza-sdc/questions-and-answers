@@ -1,39 +1,34 @@
 import express from "express";
-import sql from "../sql";
-import { Question, Answer, Photo } from "../sql";
-
-import {
-  getAnswers,
-  addAnswer,
-  markAnswerAsHelpful,
-  reportAnswer
-} from "../controllers/answers.js";
+import { Questions, Answers, AnswerPhotos } from "../db";
+import { getAnswers } from "../controllers/answers/get-answers";
+import { addAnswer } from "../controllers/answers/add-answer";
+import { markAnswerHelpful } from "../controllers/answers/mark-answer-helpful";
+import { reportAnswer } from "../controllers/answers/report-answer";
 
 const router = express.Router();
 
 /**
- * [Answers List]
- * Returns list of answers, excluding those that are reported
+ * Answers List
+ * GET /qa/:question_id/answers
+ * page:
  */
 router.get("/qa/:question_id/answers", getAnswers);
 
 /**
- * [Add an Answer]
- * Adds an answer for the question ID.
+ * Add an Answer
+ * POST /qa/:question_id/answers
  */
 router.post("/qa/:question_id/answers", addAnswer);
 
 /**
- * [Mark Answer as Helpful]
- * Updates an answer to show it was helpful.
+ * Mark Answer Helpful
+ * PUT /qa/answer/:answer_id/helpful
  */
-router.put("/qa/answer/:answer_id/helpful", markAnswerAsHelpful);
+router.put("/qa/answer/:answer_id/helpful", markAnswerHelpful);
 
 /**
- * [Report Answer]
- * Updates an answer to show it has been reported.
- * This action does not delete the answer, but the answer will
- * not be returned in subsequent GET requests for answers.
+ * Report Answer
+ * PUT /qa/answer/:answer_id/report
  */
 router.put("/qa/answer/:answer_id/report", reportAnswer);
 

@@ -1,4 +1,0 @@
-CREATE DATABASE qa_dev;
-CREATE DATABASE qa_test;
-CREATE DATABASE qa_prod;
-CREATE DATABASE qa_stage;

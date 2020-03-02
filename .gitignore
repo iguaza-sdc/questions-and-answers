@@ -7,4 +7,8 @@ services/etl/json_files
 services/etl/csv_files
 services/etl/questions
 services/qa/.env
+services/etl
 .DS_Store
+.tern-project
+.tern-port
+locust/env/*

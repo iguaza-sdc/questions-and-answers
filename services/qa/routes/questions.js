@@ -1,41 +1,32 @@
 import express from "express";
-import sql from "../sql";
-import { Question, Answer, Photo } from "../sql";
-
-import {
-  getQuestions,
-  addQuestion,
-  markQuestionAsHelpful,
-  reportQuestion
-} from "../controllers/questions.js";
-
+import { Questions, Answers, AnswerPhotos } from "../db";
+import { getQuestions } from "../controllers/questions/get-questions";
+import { addQuestion } from "../controllers/questions/add-question";
+import { markQuestionHelpful } from "../controllers/questions/mark-question-helpful";
+import { reportQuestion } from "../controllers/questions/report-question";
 const router = express.Router();
 
 /**
- * [Questions List]
- * Returns list of questions for a given product_id
+ * List Questions
+ * GET /qa/:product_id
  */
 router.get("/qa/:product_id", getQuestions);
 
 /**
- * [Add a Question]
- * Adds question for given product to database.
+ * Add A Question
+ * POST /qa/:product_id
  */
 router.post("/qa/:product_id", addQuestion);
 
-/* MARK AS HELPFUL */
-
 /**
- * [Mark Question as Helpful]
- * Updates a question too show it was found helpful
+ * Mark Question Helpful
+ * PUT /qa/question/:question_id/helpful
  */
-router.put("/qa/question/:question_id/helpful", markQuestionAsHelpful);
+router.put("/qa/question/:question_id/helpful", markQuestionHelpful);
 
 /**
- * [Report Question]
- * Updates a question tos how it was reported.
- * This action does not delete the question, but the question will
- * not be returned in subsequent GET requests for questions.
+ * Report Question
+ * PUT /qa/question/:question_id/helpful
  */
 router.put("/qa/question/:question_id/report", reportQuestion);
 

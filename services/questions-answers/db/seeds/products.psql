@@ -1,0 +1,109 @@
+insert into products (
+    id, name, slogan, description, category, default_price
+) values (
+    1, 
+    'Macbook Pro 16 Inch (Late 2019)',
+    'The best for the brightest.',
+    'Designed for those who defy limits and change the world, the new MacBook Pro is by far the most powerful notebook we’ve ever made. With an immersive 16-inch Retina display, superfast processors, next-generation graphics, the largest battery capacity ever in a MacBook Pro, a new Magic Keyboard, and massive storage, it’s the ultimate pro notebook for the ultimate user.',
+    'Macbook',
+    2399
+);
+
+insert into products (
+    id, name, slogan, description, category, default_price
+) values (
+    2, 
+    'Macbook Pro 13 Inch (Late 2019)',
+    'With great power comes great capability.',
+    'MacBook Pro elevates the notebook to a whole new level of performance and portability. Wherever your ideas take you, you’ll get there faster than ever with high‑performance processors and memory, advanced graphics, blazing‑fast storage, and more — all in a compact 3-pound package.',
+    'MacBook',
+    1299
+);
+
+insert into products (
+    id, name, slogan, description, category, default_price
+) values (
+    3,
+    'Macbook Air',
+    'Lightness strikes again.',
+    'With a resolution of 2560-by-1600 for over 4 million pixels, the results are positively jaw dropping. Images take on a new level of detail and realism. Text is sharp and clear.',
+    'MacBook',
+    1099    
+);
+
+insert into products (
+    id, name, slogan, description, category, default_price    
+) values (
+    4,
+    'iMac',
+    'Pretty. Freaking powerful.',
+    'Apple Pencil set the standard for how drawing, note-taking, and marking up documents should feel — intuitive, precise, and magical.',
+    'iPad',
+    129
+);
+
+insert into products (
+    id, name, slogan, description, category, default_price    
+) values (
+    5,
+    'iMac Pro', 
+    'Power to the pro.', 
+    'Up to 18 cores in an iMac. That\'s not a typo.', 
+    'Desktop Computers', 
+    4999
+);
+
+insert into products (
+    id, name, slogan, description, category, default_price
+) values (
+    6,
+    'iPad Pro',
+    'Meet iPad Pro',
+    'It\’s all screen and all powerful. Completely redesigned and packed with our most advanced technology, it will make you rethink what iPad is capable of.'
+    'iPad',
+    799
+);
+
+insert into products (
+    id, name, slogan, description, category, default_price
+) values (
+    7,
+    'iPad',
+    'Our most popular iPad',
+    'The new iPad combines the power and capability of a computer with the ease of use and versatility you’d never expect from one.'
+    'Tablets',
+    329
+);
+
+insert into products (
+    id, name, slogan, description, category, default_price
+) values (
+    8,
+    'iPad Mini',
+    'Mini just got mightier',
+    'iPad mini features a thin, light, and portable design that makes it the perfect on-the-go companion.',
+    'iPad',
+    399
+);
+
+insert into products (
+    id, name, slogan, description, category, default_price
+) values (
+    9,
+    'iPad Air',
+    'Power isn\'t just for the pros.',
+    'iPad Air features a large 10.5‑inch Retina display, while remaining extremely portable and perfect for getting things done anywhere.'
+    'iPad',
+    499
+);
+
+insert into products (
+    id, name, slogan, description, category, default_price
+) values (
+    10,
+    'Apple Watch Series 5',
+    'You\'ve never seen a watch like this.',
+    'With the new Always-On-Retina displlay you always see the time and watch your face.',
+    'Watch',
+    399
+);

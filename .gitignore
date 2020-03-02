@@ -9,3 +9,5 @@ services/etl/questions
 services/qa/.env
 services/etl
 .DS_Store
+.tern-project
+.tern-port

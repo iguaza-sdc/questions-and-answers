@@ -1,121 +1,94 @@
-# WORKFLOW
+# TODOS:
+- [ ] Routes
+  - [ ] Questions
+  - [ ] Answers
+  - [ ] Photos
+- [ ] Configure for environment variable changes
+  - [ ] Client
+  - [ ] Database
+  - [ ] Server
 
-1. Add a product
+# Installing a PostgreSQL Server On AmazonEC2
 
-2. Add two features
-
-3. Add two styles
-
-4. Add two SKUs
-
-5. Get Product Information
-  - product_id AS id
-  - name as name
-  - slogan as slogan
-  - description as description
-  - category as category
-  - default_price as default_price
-  - features
-    + feature
-    + value
-
-```sql
-select
-  p.product_id as id,
-  p.name,
-  p.slogan,
-  p.description,
-  p.category,
-  f.feature,
-  f.value
-from products as p
-join features as f
-on p.product_id = f.product_id;
+```bash
+# Update the security and other necessary dependencies.
+sudo apt-get install && sudo apt-get update
 ```
 
-```
-------------------------------------------------------------------------------------------------
-id          | 1
-name        | Macbook Pro
-slogan      | The best for the brightest.
-description | Designed for those who defy limits and change the world...
-category    | Computers/Laptops
-feature     | CPU
-value       | 2.4 GHz Intel Core i9 8-Core
-------------------------------------------------------------------------------------------------
-id          | 1
-name        | Macbook Pro
-slogan      | The best for the brightest.
-description | Designed for those who defy limits and change the world...
-category    | Computers/Laptops
-feature     | RAM
-value       | 64GB
-------------------------------------------------------------------------------------------------
+## Install the postgresql packages
+
+```bash
+sudo apt-get install postgresql postgresql-contrib
 ```
 
-6. Get Product Styles
-  - product_id => (string) => product_id
-  - results => `[{styles}]`
-    + style_id
-    + name
-    + original_price
-    + sale_price
-    + default_price as default?
-    + photos => `[{photos}]`
-      * thumbnail_url
-      * url
-    + skus => `[{skus}]`
-      - sku_name
-      - sku_name
+## Create user with permissions
 
-7. Get Related Products
-  - `[...product_id(s)]`
+```bash
+sudo -u postgresql psql
+```
+
+## Create A New Database
+
+```bash
+sudo -u postgres createdb <db_name>
+```
+
+## Change the password for the postgres user
+
+Login as the root user:
+
+```bash
+sudo su -
+```
+
+Change the listen address:
+
+```bash
+vim /etc/postgresql/10/main/postgresql/conf
+```
+
+1. Use the search function in vim:
+- Hit the esc key to make sure you are in command mode.
+- `%s/listen_addresses` and Enter should bring to where that line is
+- Uncomment the line by pressing x while cursor is over the `#`
+- Then press `2wl` and enter to move the cursor 2 words over and 1 to the right
+- Then press `cw*` and esc to change the word and replace it with `*`
+- Then press `:wq!` to save and quit
+
+Allow remote access for anyone with password authentication
+
+```bash
+vim /etc/postgresql/10/main/pg_hba.conf
+```
+
+Once inside, to get the cursor to the very end of the file:
+- Press Shift+g to go the last line
+- Enter Shift+A to go the end of the line in Insert mode
+- Press enter to create a new line then type:
+
+```bash
+# Database administrative login by Unix domain socket
+local   all             postgres                                peer
+
+# TYPE  DATABASE        USER            ADDRESS                 METHOD
+
+# "local" is for Unix domain socket connections only
+local   all             all                                     peer
+# IPv4 local connections:
+host    all             all             127.0.0.1/32            md5
+# IPv6 local connections:
+host    all             all             ::1/128                 md5
+# Allow replication connections from localhost, by a user with the
+# replication privilege.
+local   replication     all                                     peer
+host    replication     all             127.0.0.1/32            md5
+host    replication     all             ::1/128                 md5
+host    all             all             0.0.0.0/0               md5
+```
+
+# 19.3.1 Connection Settings
+
+`listen_addresses (string)`
+Specifies the TCP/IP addresses on which the server is to listen for connections form client applications. The value takes the form of a comma-separated list of host names and or numeric IP addresses. The special entry `*` corresponds to available IP interfaces. The entry `0.0.0.0` allows listening for all IPv6 addresses and `::` allows listening for IPv6 addresses.
 
 
-# Questions & Answers
-
-1. Add two questions
-
-2. Add two answers for each question
-2. Add two photos for each question
-
-3. Mark one answer helpful
-
-4. Report 1 question
-
-5. Get questions
-  - product_id => (string) => "product_id"
-  - question_body
-  - question_date
-  - asker_name
-  - question_helpfulness
-  - reported
-  - answers => (`[{answers}]`)
-    + answer_id:
-      * answer_id
-      * answer_body
-      * answer_date
-      * answerer_name
-      * answer_helpfulness
-      * photos => `[{photos}]`
-        - thumbnail_url
-        - url
-
-6. Answers List
-  - question: str(question_id)
-  - page: page
-  - count: count
-  - results => `[{answers}]`
-    + answer_id 
-    + answer_body => body
-    + answer_date => date
-    + answerer_name
-    + helpfulness
-    + photos => `[{photos}]`
-
-
-# Workflow
-1. Use commited GitHub changes as reference for what models should look like AFTER cleaning the data
-2. `{force: true}` to clear tables and remove schema constraints, remake them THEN immediately remove `{force: true}`
-3. Use `SQL Postico`'s Query Editor to resolve any conflicts that would that would occur if you were to hypothetically put constraints back on to the Sequelize models.
-4. When confident that they are compliant, add constraints back in.

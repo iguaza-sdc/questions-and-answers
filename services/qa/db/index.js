@@ -1,8 +1,10 @@
 import Sequelize from "sequelize";
 
-// const SDC_DATABASE_URL = process.env.SDC_DATABASE_URL;
+const PSQL_URI = process.env.DB_HOST || "postgres://postgres:postgres@localhost:5432/qa";
 
-const db = new Sequelize("postgres://jarrodchung@localhost:5432/qa", {
+const db = new Sequelize(PSQL_URI, {
+  host: process.env.DB_HOST,
+  dialect: "postgres",
   logging: console.log,
   define: {
     timestamps: false,
@@ -19,7 +21,7 @@ export const AnswerPhotos = db.import("./models/AnswerPhotos");
 
 db.authenticate()
   .then(() => {
-    db.sync({})
+    db.sync()
       .then(() => {
         console.log("Database synced!");
       })
@@ -35,8 +37,8 @@ db.authenticate()
           AnswerPhotos.belongsTo(Answers, { foreignKey: "answer_id" })
         ]);
       })
-      .then((relationships) => {
-        console.log(relationships);
+      .then((models) => {
+        console.log(models);
       })
       .catch((err) => {
         console.log("ASSOCIATION ERROR:", err);

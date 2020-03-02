@@ -4,6 +4,7 @@ export const getProducts = (req, res) => {
   let product_id = req.params.product_id;
   let page = req.query.page || 1;
   let count = req.query.count || 5;
+
   Products.findAll({ limit: count })
     .then((products) => {
       res.status(201).send(

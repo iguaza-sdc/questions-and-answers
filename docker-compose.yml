@@ -13,12 +13,12 @@ services:
       - 3009:3000
     environment:
       - NODE_ENV=development
-      - REACT_APP_QA_API=http://localhost:5001
+      - REACT_APP_QA_API=$REACT_APP_QA_API
 
   qa:
     container_name: qa
     build:
-      context: ./services/questions-answers
+      context: ./services/qa
       dockerfile: Dockerfile
     volumes:
       - "./services/qa:/usr/src/app"
@@ -27,8 +27,9 @@ services:
       - 5001:5000
     environment:
       - NODE_ENV=development
-      - PORT=5000
-      - SDC_DATABASE_URL=postgres://postgres:postgres@qa-db:54321/qa
+      - PORT=5009
+      - REDIS_PORT=6379
+      - DB_HOST=$SDC_DB
     depends_on:
       - qa-db
 
@@ -36,20 +37,8 @@ services:
     container_name: qa-db
     image: postgres:latest
     ports:
-      - 54321:5432
+      - 5435:5432
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=qa
-
-  nginx:
-    container_name: nginx
-    build:
-      context: ./services/nginx
-      dockerfile: Dockerfile
-    restart: always
-    ports:
-      - 80:80
-    depends_on:
-      - client
-      - qa

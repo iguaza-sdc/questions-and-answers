@@ -11,3 +11,4 @@ services/etl
 .DS_Store
 .tern-project
 .tern-port
+locust/env/*

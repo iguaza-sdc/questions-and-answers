@@ -1,15 +1,13 @@
 import fs from "fs";
 import path from "path";
-import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import logger from "morgan";
 import router from "./routes";
 
-dotenv.config();
+const port = process.env.PORT || 5001;
 
 const app = express();
-const port = process.env.PORT || 5001;
 
 /**
  * Express Middleware
@@ -17,7 +15,16 @@ const port = process.env.PORT || 5001;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
+
+/**
+ * Logging
+ */
 app.use(logger("dev"));
+app.use(
+  logger("tiny", {
+    stream: fs.createWriteStream("./logs/access.log", { flags: "a" })
+  })
+);
 
 /**
  * Routes found in /routes

@@ -9,71 +9,86 @@
 - PUT /qa/answer/:answer_id/report
 """
 
+import json
+import random
+
+from faker import Faker
+
 from locust import HttpLocust
 from locust import TaskSet
 from locust import between
 from locust import task
 
+random.randrange(1, 1000000)
+
+fake = Faker()
 
 class UserBehavior(TaskSet):
+    headers = {"content-type": "application/json"}
+
     def on_start(self):
         self.get_question()
 
     @task
     def add_question(self):
-        question = {
-            "body": "Is this a question body?",
-            "name": "Test Question",
-            "email": "test.question@test.com"
-        }
-        self.client.post("/qa", question)
+        self.client.post(
+            f"/qa/{random.randint(1, 1000)}",
+            headers=self.headers,
+            json={
+                "name": fake.name(),
+                "email": fake.email(),
+                "body": fake.text(),
+                "product_id": random.randint(1, 100),
+            },
+        )
 
     @task
     def get_question(self):
-        self.client.get(f"/qa/1000")
+        self.client.get(f"/qa/{random.randint(1, 1000)}")
 
     @task
     def mark_question_helpful(self):
-        self.client.put(f"/qa/question/10000/helpful")
+        self.client.put(f"/qa/question/{random.randint(1, 1000)}/helpful")
 
     @task
     def report_question(self):
-        self.client.put(f"/qa/question/10000/report")
+        self.client.put(f"/qa/question/{random.randint(1, 1000)}/report")
 
     @task
     def add_answer(self):
-        answer = {
-            "body": "This is an answer.",
-            "name": "Test Answer",
-            "email": "test.answer@test.com",
-            "photos": [
-                {
-                    "url": "tinyurl.com/photo1.jpg",
-                    "thumbnail": "tinyurl.com/thumbnail0.jpg"
-                },
-                {
-                    "url": "tinyurl.com/photo1.jpg",
-                    "thumbnail": "tinyurl.com/thumbnail1.jpg"
-                }
-            ]
-        }
-        self.client.post(f"/qa/1000/answers")
+        self.client.post(
+            f"/qa/{random.randint(1, 3000000)}/answers",
+            headers=self.headers,
+            json={
+                "body": fake.text(),
+                "name": fake.name(),
+                "email": fake.email(),
+                "photos": [
+                    {
+                        "url": "tinyurl.com/photo1.jpg",
+                        "thumbnail": "tinyurl.com/thumbnail0.jpg",
+                    },
+                    {
+                        "url": "tinyurl.com/photo1.jpg",
+                        "thumbnail": "tinyurl.com/thumbnail1.jpg",
+                    },
+                ],
+            }
+        )
 
     @task
     def get_answers(self):
-        self.client.get(f"/qa/1000/answers")
+        self.client.get(f"/qa/{random.randint(1, 3000000)}/answers")
 
     @task
     def mark_answer_helpful(self):
-        self.client.put(f"/qa/answer/1/helpful")
+        self.client.put(f"/qa/answer/{random.randint(1, 100000)}/helpful")
 
     @task
     def report_answer(self):
-        self.client.put(f"/qa/answer/1/report")
+        self.client.put(f"/qa/answer/{random.randint(1, 100000)}/report")
+
 
 class WebsiteUser(HttpLocust):
     task_set = UserBehavior
-    min_wait = 1000
-    max_wait = 2000
-
-
+    wait_time = between(1, 2)

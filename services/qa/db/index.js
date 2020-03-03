@@ -1,11 +1,10 @@
 import Sequelize from "sequelize";
 
-const PSQL_URI = process.env.DB_HOST || "postgres://postgres:postgres@localhost:5432/qa";
+const PSQL_URI = process.env.DATABASE_URL;
 
 const db = new Sequelize(PSQL_URI, {
-  host: process.env.DB_HOST,
   dialect: "postgres",
-  logging: console.log,
+  logging: false,
   define: {
     timestamps: false,
     underscored: true
@@ -37,12 +36,8 @@ db.authenticate()
           AnswerPhotos.belongsTo(Answers, { foreignKey: "answer_id" })
         ]);
       })
-      .then((models) => {
-        console.log(models);
-      })
-      .catch((err) => {
-        console.log("ASSOCIATION ERROR:", err);
-      });
+      .then((models) => {})
+      .catch((err) => {});
   })
   .catch((err) => console.log(err));
 

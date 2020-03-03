@@ -19,4 +19,7 @@ router.use(questionRoutes);
 import answerRoutes from "./answers";
 router.use(answerRoutes);
 
+import loaderRoutes from "./loader";
+router.use(loaderRoutes);
+
 export default router;

@@ -11,9 +11,7 @@ import axios from "axios";
 import dateFormatter from "./components/QA/dateFormatter";
 
 const handleClickTrackingUserInteractions = (postBody) => {
-  axios
-    .post(process.env.REACT_APP_QA_API_URL, postBody)
-    .catch((err) => console.error(err));
+  axios.post(process.env.REACT_APP_API_URL, postBody).catch((err) => console.error(err));
 };
 
 ReactDOM.render(
@@ -23,4 +21,3 @@ ReactDOM.render(
   </Router>,
   document.getElementById("app")
 );
-

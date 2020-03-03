@@ -1,11 +1,16 @@
-FROM node:13.8-alpine
+FROM node:13.8.0-alpine
 
 WORKDIR /usr/src/app
 
 COPY ./package.json /usr/src/app/package.json
 
+ARG DATABASE_URL
+ENV DATABASE_URL $DATABASE_URL
+
 RUN npm install
 
 COPY . /usr/src/app
+
+EXPOSE 5001
 
 CMD ["npm", "run", "prod"]

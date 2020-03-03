@@ -1,5 +1,5 @@
-import React from 'react';
-import ProdCard from './RelatedProducts/OtherProducts/ProdCard';
+import React from "react";
+import ProdCard from "./RelatedProducts/OtherProducts/ProdCard";
 
 const Homepage = ({ outfit, removeProduct }) => {
   const outfitCards =
@@ -19,8 +19,8 @@ const Homepage = ({ outfit, removeProduct }) => {
     <>
       <h1 className="homepage-title">
         {outfitCards.length > 0
-          ? 'Here is your outfit at the moment'
-          : 'Add / and a number to the URL to begin shopping!'}
+          ? "Here is your outfit at the moment"
+          : "Add / and a number to the URL to begin shopping!"}
       </h1>
       <div className="homepage">{outfitCards}</div>
     </>

@@ -5,30 +5,29 @@ services:
     container_name: client
     build:
       context: ./services/client
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-prod
+      args:
+        - NODE_ENV=production
+        - REACT_APP_API_URL=${REACT_APP_API_URL}
     expose:
       - 80
-    environment:
-      - NODE_ENV=${NODE_ENV}
-      - REACT_APP_QA_API=${REACT_APP_QA_API}
+    depends_on:
+      - qa
 
   qa:
-    container_name: qa
     build:
       context: ./services/qa
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-prod
     expose:
       - 5000
     environment:
-      - NODE_ENV=${NODE_ENV}
-      - PORT=5009
+      - NODE_ENV=production
       - DATABASE_URL=${SDC_DB}
 
   nginx:
-    container_name: nginx
     build:
       context: ./services/nginx
-      dockerfile: Dockerfile-stage
+      dockerfile: Dockerfile-prod
     restart: always
     ports:
       - 80:80
